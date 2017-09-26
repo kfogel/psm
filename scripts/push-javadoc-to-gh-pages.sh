@@ -3,14 +3,17 @@ set -ex
 
 # Adaptation of code from https://benlimmer.com/2013/12/26/automatically-publish-javadoc-to-gh-pages-with-travis-ci/
 
+# if [ "$TRAVIS_REPO_SLUG" == "OpenTechStrategies/psm" ] \
+#        && [ "$TRAVIS_JDK_VERSION" == "openjdk8" ] \
+#        && [ "$TRAVIS_PULL_REQUEST" == "false" ] \
+#        && [ "$TRAVIS_BRANCH" == "master" ]; then
+
 if [ "$TRAVIS_REPO_SLUG" == "OpenTechStrategies/psm" ] \
-       && [ "$TRAVIS_JDK_VERSION" == "openjdk8" ] \
-       && [ "$TRAVIS_PULL_REQUEST" == "false" ] \
-       && [ "$TRAVIS_BRANCH" == "master" ]; then
+       && [ "$TRAVIS_JDK_VERSION" == "openjdk8" ]; then
 
   echo -e "Publishing Javadoc...\n"
 
-  cp -R cms-web/build/reports/api-docs $HOME/javadoc-latest
+  cp -R psm-app/cms-web/build/reports/api-docs $HOME/javadoc-latest
 
   cd $HOME
   git clone --quiet --branch=gh-pages \
