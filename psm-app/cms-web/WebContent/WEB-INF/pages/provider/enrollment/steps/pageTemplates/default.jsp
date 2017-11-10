@@ -12,7 +12,8 @@
 <form action="" id="enrollmentForm" method="post" enctype="multipart/form-data">
   <sec:csrfInput />
   <!-- /.errorInfo -->
-  <%@include file="/WEB-INF/pages/provider/enrollment/steps/errors.jsp" %>
+  <h:handlebars template="provider/enrollment/steps/errors" context="${pageContext}"/>
+
 
   <c:forEach var="formName" items="${viewModel.currentFormNames}">
     <c:forEach var="entry" items="${viewRegistry}">

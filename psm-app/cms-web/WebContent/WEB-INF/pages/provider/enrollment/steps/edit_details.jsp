@@ -97,7 +97,8 @@
 
             <!-- /.errorInfo -->
             <div class="clear"></div>
-            <%@include file="/WEB-INF/pages/provider/enrollment/steps/errors.jsp" %>
+            <h:handlebars template="provider/enrollment/steps/errors" context="${pageContext}"/>
+
 
             <!-- /.detailPanel -->
             <div class="tabHead" style="width: 958px;">

@@ -1,0 +1,23 @@
+{{#if flash_error}}
+  <div class="errorInfo formErrorMarker" style="display: block;">
+    <h3>Unable to process request because one or more values could not be recognized:</h3>
+    <p class="bindingError">{{flash_error}}</p>
+    <div class="tl"></div>
+    <div class="tr"></div>
+    <div class="bl"></div>
+    <div class="br"></div>
+  </div>
+{{else}}
+  {{#if errors}}
+    <div class="errorInfo formErrorMarker" style="display: block;">
+      <h3>Please correct the following errors:</h3>
+      {{#each errors}}
+        <p class="{{this.fieldId}}">{{this.message}}</p>
+      {{/each}}
+      <div class="tl"></div>
+      <div class="tr"></div>
+      <div class="bl"></div>
+      <div class="br"></div>
+    </div>
+  {{/if}}
+{{/if}}

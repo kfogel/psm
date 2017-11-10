@@ -3,7 +3,7 @@
 <div class="tabSection">
   <form action="" id="enrollmentForm" method="post">
     <sec:csrfInput />
-    <%@include file="/WEB-INF/pages/provider/enrollment/steps/errors.jsp" %>
+    <h:handlebars template="provider/enrollment/steps/errors" context="${pageContext}"/>
 
     <div class="detailPanel firstRegistrant" style="width: 940px;">
 
