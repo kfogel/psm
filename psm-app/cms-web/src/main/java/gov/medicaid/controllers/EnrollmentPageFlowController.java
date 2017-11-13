@@ -1274,6 +1274,7 @@ public class EnrollmentPageFlowController extends BaseController {
         mv.addObject("viewModel", viewModel);
         mv.addObject("viewRegistry", formViewRegistry);
         mv.addObject("summaryViewRegistry", summaryViewRegistry);
+        mv.addObject("PROVIDER_TYPE_FORM", ViewStatics.PROVIDER_TYPE_FORM);
 
         RequestType requestType = enrollment.getRequestType();
         boolean reopened = "Y".equals(enrollment.getReopenedForEdit());

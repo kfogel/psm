@@ -1,0 +1,34 @@
+{{!-- Fragment for provider type selection form. --}}
+<div class="section">
+  <input type="hidden" name="formNames" value="{{PROVIDER_TYPE_FORM}}"/>
+  <div class="wholeCol">
+    <label>Provider Type</label>
+    <span class="floatL"><b>:</b></span>
+    <select name="_01_providerType">
+      <option value="">Please select</option>
+      {{!-- If items are in each grouping we group them with <optgroup>. --}}
+      {{#if individualProviderTypes}}
+        {{#if organizationProviderTypes}}
+          <optgroup label="Individual Providers">
+        {{/if}}
+      {{/if}}
+      {{#each individualProviderTypes}}
+            <option {{this.selectedMarkup}} value="{{this.description}}">{{this.description}}</option>
+      {{/each}}
+      {{#if individualProviderTypes}}
+        {{#if organizationProviderTypes}}
+          </optgroup>
+          <optgroup label="Organization Providers">
+        {{/if}}
+      {{/if}}
+      {{#each organizationProviderTypes}}
+            <option {{this.selectedMarkup}} value="{{this.description}}">{{this.description}}</option>
+      {{/each}}
+      {{#if individualProviderTypes}}
+        {{#if organizationalProviderTypes}}
+          </optgroup>
+        {{/if}}
+      {{/if}}
+    </select>
+  </div>
+</div>

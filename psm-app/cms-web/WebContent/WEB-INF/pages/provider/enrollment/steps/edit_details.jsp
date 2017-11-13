@@ -86,7 +86,7 @@
 
               <div class="detailPanel firstRegistrant" style="width: 940px;">
 
-                <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/default/provider_type.jsp" %>
+                <h:handlebars template="provider/enrollment/steps/pages/default/provider_type" context="${pageContext}"/>
                 <!-- /.section -->
                 <div class="tl"></div>
                 <div class="tr"></div>
