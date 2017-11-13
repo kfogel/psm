@@ -61,7 +61,7 @@
 
           <c:choose>
             <c:when test="${pageName eq 'Provider Type Page'}">
-              <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/select_type.jsp" %>
+              <h:handlebars template="provider/enrollment/steps/pages/select_type" context="${pageContext}"/>
             </c:when>
             <c:when test="${pageName eq 'Summary Information'}">
               <%@include file="/WEB-INF/pages/provider/enrollment/steps/pageTemplates/summary.jsp" %>
