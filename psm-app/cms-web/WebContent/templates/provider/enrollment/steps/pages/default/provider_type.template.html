@@ -12,18 +12,18 @@
           <optgroup label="Individual Providers">
         {{/if}}
       {{/if}}
-      {{#each individualProviderTypes}}
+      {{#optionsList individualProviderTypes providerType}}
             <option {{this.selectedMarkup}} value="{{this.description}}">{{this.description}}</option>
-      {{/each}}
+      {{/optionsList}}
       {{#if individualProviderTypes}}
         {{#if organizationProviderTypes}}
           </optgroup>
           <optgroup label="Organization Providers">
         {{/if}}
       {{/if}}
-      {{#each organizationProviderTypes}}
+      {{#optionsList organizationProviderTypes providerType}}
             <option {{this.selectedMarkup}} value="{{this.description}}">{{this.description}}</option>
-      {{/each}}
+      {{/optionsList}}
       {{#if individualProviderTypes}}
         {{#if organizationalProviderTypes}}
           </optgroup>
