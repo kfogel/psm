@@ -22,4 +22,10 @@ public class LoginPage extends PageObject {
         String welcomeText = $("#header > div > div.userSection").getText();
         assertThat(welcomeText).contains("Welcome, " + username);
     }
+
+    public void checkUserLoggedOut() {
+        // TODO: check that this works as expected
+        String registerText = $("div.buttons > a").getText();
+        assertThat(registerText).contains("Register New Account");
+    }
 }

@@ -64,7 +64,7 @@
             | <a href="<c:url value='/system/help-system-admin' />">Help</a>
             | <c:url var="logoutUrl" value="/logout"/>
               <form action="${logoutUrl}" method="post" class="logoutForm">
-                <input type="submit" class="logoutButton" value="Logout"/>
+                <input type="submit" id="logoutBtn" class="logoutButton" value="Logout"/>
                 <input type="hidden"
                        name="${_csrf.parameterName}"
                        value="${_csrf.token}"/>
