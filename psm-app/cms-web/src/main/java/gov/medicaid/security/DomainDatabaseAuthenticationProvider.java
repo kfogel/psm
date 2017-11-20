@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import gov.medicaid.services.RegistrationService;
 
 import java.util.ArrayList;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -49,13 +49,13 @@ public class DomainDatabaseAuthenticationProvider implements AuthenticationProvi
     /**
      * Logger.
      */
-    private Logger log = Logger.getLogger(getClass());
+    private Logger logger = Logger.getLogger(getClass().getName());
 
     /**
      * The identity provider.
      */
     private RegistrationService registrationService;
-    
+
     /**
      * Creates a new provider.
      */
@@ -74,13 +74,13 @@ public class DomainDatabaseAuthenticationProvider implements AuthenticationProvi
             final String username = userToken.getName();
             final String password = (String) authentication.getCredentials();
             try {
-                log.info("Attempting database authentication...");
+                logger.info("Attempting database authentication...");
                 boolean valid = registrationService.authenticate(username, password);
                 if (valid) {
-                    log.info("Internal user found, loading credentials...");
+                    logger.info("Internal user found, loading credentials...");
                     return createSuccessfulAuthentication(userToken, loadUserByUsername(username));
                 }
-                log.info("User not authenticated, will fallback to next authentication method");
+                logger.info("User not authenticated, will fallback to next authentication method");
             } catch (PortalServiceException e) {
                 return null;
             }

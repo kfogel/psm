@@ -29,7 +29,7 @@ import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
-import com.topcoder.util.log.Level;
+import java.util.logging.Level;
 
 /**
  * Implementation of a partner service.
@@ -95,22 +95,22 @@ public class MockMNITSPartnerServiceBean extends BaseService implements
             String profileNPI, String referrer) throws PortalServiceException {
 
         if (!internalSecurityDomain.equals(referrer)) {
-            getLog().log(Level.WARN, "Rejecting external login due to invalid domain: " + referrer);
+            getLogger().log(Level.WARNING, "Rejecting external login due to invalid domain: " + referrer);
             return false;
         }
         if (!internalSecurityToken.equals(password)) {
-            getLog().log(Level.WARN, "Rejecting external login due to invalid token: " + password);
+            getLogger().log(Level.WARNING, "Rejecting external login due to invalid token: " + password);
             return false;
         }
 
         if (!enrollmentService.existsProfile(profileNPI)) {
-            getLog().log(Level.WARN, "Rejecting external login because provider NPI is not found.");
+            getLogger().log(Level.WARNING, "Rejecting external login because provider NPI is not found.");
             return false;
         }
 
         if (!externalUserId.equals(profileNPI)) {
             if (!enrollmentService.hasGroupAffiliation(externalUserId, profileNPI)) {
-                getLog().log(Level.WARN, "Rejecting external login because affiliation is not found.");
+                getLogger().log(Level.WARNING, "Rejecting external login because affiliation is not found.");
                 return false;
             }
         }

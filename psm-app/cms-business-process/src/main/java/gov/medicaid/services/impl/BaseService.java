@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -20,14 +20,13 @@ import gov.medicaid.entities.CMSUser;
 import gov.medicaid.entities.LookupEntity;
 import gov.medicaid.services.CMSConfigurator;
 import gov.medicaid.services.LookupService;
-import gov.medicaid.services.util.LogUtil;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.topcoder.util.log.Log;
+import java.util.logging.Logger;
 
 /**
  * A base service class that other classes will extend that provides logging.
@@ -45,7 +44,7 @@ public abstract class BaseService {
     /**
      * It will be used to log events from the service implementations.
      */
-    private Log log = null;
+    private Logger logger = null;
 
     /**
      * Lookup service.
@@ -75,8 +74,8 @@ public abstract class BaseService {
      *
      * @return the log
      */
-    public Log getLog() {
-        return log;
+    public Logger getLogger() {
+        return logger;
     }
 
     /**
@@ -84,8 +83,8 @@ public abstract class BaseService {
      */
     @PostConstruct
     protected void init() {
-        if (log == null) {
-            log = LogUtil.getLog(getClass().getName());
+        if (logger == null) {
+            logger = Logger.getLogger(getClass().getName());
         }
 
         CMSConfigurator config = new CMSConfigurator();
@@ -156,10 +155,10 @@ public abstract class BaseService {
 
     /**
      * Sets the value of the field <code>log</code>.
-     * @param log the log to set
+     * @param logger the logger to set
      */
-    public void setLog(Log log) {
-        this.log = log;
+    public void setLog(Logger logger) {
+        this.logger = logger;
     }
 
     /**

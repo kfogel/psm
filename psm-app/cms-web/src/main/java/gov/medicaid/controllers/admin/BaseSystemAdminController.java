@@ -16,7 +16,7 @@
 
 package gov.medicaid.controllers.admin;
 
-import com.topcoder.util.log.Log;
+import java.util.logging.Logger;
 import gov.medicaid.interceptors.HandlebarsInterceptor;
 import gov.medicaid.services.LookupService;
 import gov.medicaid.services.PortalServiceConfigurationException;
@@ -46,7 +46,7 @@ public abstract class BaseSystemAdminController {
      * It is injected by the container, may have any value, is fully mutable, but not expected to change after
      * dependency injection.
      */
-    private Log log;
+    private Logger logger;
 
     /**
      * Registration service.
@@ -89,27 +89,27 @@ public abstract class BaseSystemAdminController {
      * @throws PortalServiceConfigurationException - If there are required injection fields that are not injected
      */
     protected void init() {
-        if (log == null) {
-            throw new PortalServiceConfigurationException("log must be configured.");
+        if (logger == null) {
+            logger = Logger.getLogger(getClass().getName());
         }
     }
 
     /**
-     * Gets the value of the field <code>log</code>.
+     * Gets the value of the field <code>logger</code>.
      *
-     * @return the log
+     * @return the logger
      */
-    public Log getLog() {
-        return log;
+    public Logger getLogger() {
+        return logger;
     }
 
     /**
-     * Sets the value of the field <code>log</code>.
+     * Sets the value of the field <code>logger</code>.
      *
-     * @param log the log to set
+     * @param logger the logger to set
      */
-    public void setLog(Log log) {
-        this.log = log;
+    public void setLogger(Logger logger) {
+        this.logger = logger;
     }
 
     /**

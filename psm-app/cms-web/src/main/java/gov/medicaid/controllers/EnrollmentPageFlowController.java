@@ -16,7 +16,7 @@
 
 package gov.medicaid.controllers;
 
-import com.topcoder.util.log.Level;
+import java.util.logging.Level;
 import gov.medicaid.binders.BinderException;
 import gov.medicaid.binders.BinderUtils;
 import gov.medicaid.binders.FormBinder;
@@ -1513,7 +1513,7 @@ public class EnrollmentPageFlowController extends BaseController {
                 if (statusMessages != null) {
                     List<StatusMessageType> errorList = statusMessages.getStatusMessage();
                     for (StatusMessageType error : errorList) {
-                        getLog().log(Level.INFO, "Uncaught Error: " + error.getMessage());
+                        getLogger().log(Level.INFO, "Uncaught Error: " + error.getMessage());
                     }
                 }
             }
