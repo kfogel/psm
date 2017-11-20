@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ import gov.medicaid.entities.dto.ViewStatics;
 import gov.medicaid.services.PortalServiceConfigurationException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.RegistrationService;
-import gov.medicaid.services.util.LogUtil;
 import gov.medicaid.services.util.Util;
 
 import javax.annotation.PostConstruct;
@@ -92,9 +91,6 @@ public class ServiceAgentController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/viewAgents", method = RequestMethod.GET)
     public ModelAndView view() throws PortalServiceException {
-        String signature = "ServiceAgentController#view()";
-        LogUtil.traceEntry(getLog(), signature, null, null);
-
         try {
             UserSearchCriteria criteria = new UserSearchCriteria();
             criteria.setPageNumber(1);
@@ -107,9 +103,8 @@ public class ServiceAgentController extends BaseServiceAdminController {
 
             model.addObject("usersSearchResult", result);
             model.addObject("searchCriteria", criteria);
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -128,8 +123,6 @@ public class ServiceAgentController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/viewAgents", method = RequestMethod.POST)
     public ModelAndView search(@ModelAttribute("criteria") UserSearchCriteria criteria) throws PortalServiceException {
-        String signature = "ServiceAgentController#search(UserSearchCriteria criteria)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"criteria"}, new Object[] {criteria});
 
         try {
             SearchResult<CMSUser> result = registrationService.findUsersByCriteria(criteria);
@@ -138,9 +131,8 @@ public class ServiceAgentController extends BaseServiceAdminController {
 
             model.addObject("usersSearchResult", result);
             model.addObject("searchCriteria", criteria);
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -159,17 +151,13 @@ public class ServiceAgentController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/getAgent", method = RequestMethod.GET)
     public ModelAndView get(@RequestParam("userId") String userId) throws PortalServiceException {
-        String signature = "ServiceAgentController#get(long userId)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"userId"}, new Object[] {userId});
-
         try {
             CMSUser user = registrationService.findByUserId(userId);
             ModelAndView model = new ModelAndView("admin/service_admin_view_service_agent_details");
             model.addObject("user", user);
 
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -188,9 +176,6 @@ public class ServiceAgentController extends BaseServiceAdminController {
      */
     @RequestMapping(value = "/admin/beginEditAgent", method = RequestMethod.GET)
     public ModelAndView beginEdit(@RequestParam("userId") String userId) throws PortalServiceException {
-        String signature = "ServiceAgentController#beginEdit(long userId)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"userId"}, new Object[] {userId});
-
         try {
 
             ModelAndView model = new ModelAndView("admin/service_admin_edit_service_agent");
@@ -201,9 +186,8 @@ public class ServiceAgentController extends BaseServiceAdminController {
                 CMSUser user = registrationService.findByUserId(userId);
                 model.addObject("user", user);
             }
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -224,9 +208,6 @@ public class ServiceAgentController extends BaseServiceAdminController {
     @RequestMapping(value = "/admin/createAgent", method = RequestMethod.POST)
     public ModelAndView create(@ModelAttribute("user") CMSUser user, HttpServletRequest request)
         throws PortalServiceException {
-        String signature = "ServiceAgentController#create(User user)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"user"}, new Object[] {user});
-
         try {
             user.concatPhone();
             Role role = new Role();
@@ -238,9 +219,8 @@ public class ServiceAgentController extends BaseServiceAdminController {
             ModelAndView model = new ModelAndView("admin/service_admin_view_service_agent");
             model.addObject("user", user);
 
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -261,18 +241,14 @@ public class ServiceAgentController extends BaseServiceAdminController {
     @RequestMapping(value = "/admin/updateAgent", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute("user") CMSUser user, HttpServletRequest request)
         throws PortalServiceException {
-        String signature = "ServiceAgentController#edit(User user)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"user"}, new Object[] {user});
-
         try {
             CMSUser currentUser = ControllerHelper.getCurrentUser();
             user.concatPhone();
             registrationService.updateByAdmin(currentUser, user, null);
             ModelAndView model = new ModelAndView("admin/service_admin_view_service_agent");
             model.addObject("user", user);
-            return LogUtil.traceExit(getLog(), signature, model);
+            return model;
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
@@ -292,15 +268,12 @@ public class ServiceAgentController extends BaseServiceAdminController {
     @ResponseBody
     public String delete(@RequestParam("userIds") String[] userIds, HttpServletRequest request)
         throws PortalServiceException {
-        String signature = "ServiceAgentController#delete(long[] userIds)";
-        LogUtil.traceEntry(getLog(), signature, new String[] {"userIds"}, new Object[] {userIds});
 
         try {
             CMSUser currentUser = ControllerHelper.getCurrentUser();
             registrationService.unregisterUsers(currentUser.getUserId(), userIds);
-            return LogUtil.traceExit(getLog(), signature, "success");
+            return "success";
         } catch (PortalServiceException e) {
-            LogUtil.traceError(getLog(), signature, e);
             throw e;
         }
     }
